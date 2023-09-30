@@ -1,6 +1,10 @@
-import 'package:proj4/proj4.dart' as proj4;
+import 'package:dio/dio.dart';
+import 'models/prodResp/prodResp.dart';
 
-void main(List<String> arguments) {
-  print('Hello world: ${proj4.calculate()}!');
-  print
+void main(List<String> arguments) async {
+  Dio client = Dio();
+  String url = 'https://dummyjson.com/products';
+  Response<dynamic> response = await client.get(url);
+  ProdResp data = ProdResp.fromJson(response.data);
+  print(data.total);
 }
